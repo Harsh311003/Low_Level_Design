@@ -1,0 +1,23 @@
+@startuml
+
+package observer {
+    interface Observer {
+        +update(data: String)
+    }
+}
+
+package observable {
+    interface Subject {
+        +registerObserver(o: Observer)
+        +notifyObservers()
+    }
+
+    class NewsAgency implements Subject {
+        -observers: List<Observer>
+        +registerObserver(o: Observer)
+        +notifyObservers()
+    }
+}
+
+observer.Observer <|-- observable.NewsAgency
+@enduml
